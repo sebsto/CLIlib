@@ -8,16 +8,16 @@
 import Foundation
 import Logging
 
-var log: Logger = Log().defaultLogger
+public var log: Logger = Log().defaultLogger
 
 struct Log {
 
     // defines a global logger that we could reuse through the project
     public var defaultLogger: Logger
 
-    init(logLevel: Logger.Level = .warning) {
+    public init(logLevel: Logger.Level = .warning, label: String = "") {
 
-        defaultLogger = Logger(label: "CLIlib")
+        defaultLogger = Logger(label: label == "" ? "CLIlib" : label)
         defaultLogger.logLevel = logLevel
     }
 
