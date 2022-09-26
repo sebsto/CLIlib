@@ -8,20 +8,29 @@
 import Foundation
 import Logging
 
-public var log: Logger = Log().defaultLogger
+// defines a global logger that we could reuse through the project
+public var log: Logger = Log.defaultLogger()
 
-struct Log {
+public struct Log {
 
-    // defines a global logger that we could reuse through the project
-    public var defaultLogger: Logger
-
-    public init(logLevel: Logger.Level = .warning, label: String = "") {
-
-        defaultLogger = Logger(label: label == "" ? "CLIlib" : label)
-        defaultLogger.logLevel = logLevel
+    // defines a default logger
+    public static func defaultLogger(logLevel: Logger.Level = .warning, label: String = "") -> Logger {
+        let log = Log(logLevel: logLevel, label: label)
+        return log.logger
+    }
+    public static func verboseLogger(logLevel: Logger.Level = .debug, label: String = "") -> Logger {
+        let log = Log(logLevel: logLevel, label: label)
+        return log.logger
     }
 
-    mutating func setLogLevel(level: Logger.Level) {
-        defaultLogger.logLevel = level
+    private var logger: Logger
+    private init(logLevel: Logger.Level = .warning, label: String = "") {
+        logger = Logger(label: label == "" ? "CLIlib" : label)
+        logger.logLevel = logLevel    
     }
+    
+
+    // mutating func setLogLevel(level: Logger.Level) {
+    //     defaultLogger.logLevel = level
+    // }
 }
