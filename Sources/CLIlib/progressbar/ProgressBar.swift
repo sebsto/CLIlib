@@ -25,8 +25,15 @@ public protocol ProgressUpdateProtocol {
 }
 
 public enum ProgressBarType {
+    
+    // 30% [============--------------------]
     case percentProgressAnimation
+    
+    // [ 1/2 ]
     case countingProgressAnimation
+
+    // [ 1/2 ]
+    // [ 2/2 ]
     case countingProgressAnimationMultiLine
 }
 
