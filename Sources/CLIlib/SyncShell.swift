@@ -9,6 +9,11 @@ import Foundation
 import Logging
 
 public struct ShellOutput {
+    public init(out: String?, err: String?, code: Int32)  {
+        self.out = out
+        self.err = err
+        self.code = code
+    }
     public var out: String?
     public var err: String?
     public var code: Int32

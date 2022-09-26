@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct ReadLine: ReadLineProtocol {
-    func readLine(prompt: String, silent: Bool = false) -> String? {
+public protocol ReadLineProtocol {
+    func readLine(prompt: String, silent: Bool) -> String?
+}
+
+public struct ReadLine: ReadLineProtocol {
+    public init() {}
+    public func readLine(prompt: String, silent: Bool = false) -> String? {
         if silent {
             return String(cString: getpass(prompt))
         } else {
@@ -16,8 +21,4 @@ struct ReadLine: ReadLineProtocol {
             return Swift.readLine()
         }
     }
-}
-
-protocol ReadLineProtocol {
-    func readLine(prompt: String, silent: Bool) -> String?
 }

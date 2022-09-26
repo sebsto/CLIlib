@@ -7,12 +7,13 @@
 
 import Foundation
 
-protocol DisplayProtocol {
+public protocol DisplayProtocol {
     func display(_ msg: String, terminator: String)
 }
 
-struct Display: DisplayProtocol {
-    func display(_ msg: String, terminator: String) {
+public struct Display: DisplayProtocol {
+    public init() {}
+    public func display(_ msg: String, terminator: String) {
         print(msg, terminator: terminator)
     }
 }

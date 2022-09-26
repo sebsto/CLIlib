@@ -45,7 +45,7 @@ public class ProgressBar: ProgressUpdateProtocol {
     var fullSign: String = "=" // "🁢"
     var emptySign: String = "-"
 
-    init(output: OutputBuffer, progressBarType: ProgressBarType, title: String? = nil) {
+    public init(output: OutputBuffer, progressBarType: ProgressBarType, title: String? = nil) {
         self.output = output
         self.progressBarType = progressBarType
         self.title = title

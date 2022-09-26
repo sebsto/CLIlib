@@ -11,7 +11,7 @@ import Foundation
 class MockedDisplay: DisplayProtocol {
     var string: String = ""
 
-    func display(_ msg: String, terminator: String) {
+    public func display(_ msg: String, terminator: String) {
         self.string = msg + terminator
     }
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol OutputBuffer {
+public protocol OutputBuffer {
     func write(_ text: String)
     func clear()
 }
 
-class StringBuffer: OutputBuffer {
+public class StringBuffer: OutputBuffer {
     public private(set) var string: String = ""
 
     public func write(_ text: String) {

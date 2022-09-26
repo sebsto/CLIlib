@@ -8,39 +8,6 @@
 import XCTest
 @testable import CLIlib
 
-class MockShell: AsyncShellProtocol {
-
-    var command: String = ""
-
-    func run(_ command: String,
-             onCompletion: ((Process) -> Void)?,
-             onOutput: ((String) -> Void)?,
-             onError: ((String) -> Void)?) throws -> Process {
-
-        self.command = command
-
-        let process = Process()
-        let out = "out"
-        let err = "err"
-        if let onCompletion {
-            onCompletion(process)
-        }
-        if let onOutput {
-            onOutput(out)
-        }
-        if let onError {
-            onError(err)
-        }
-        return process
-    }
-
-    func run(_ command: String) throws -> ShellOutput {
-        self.command = command
-        return ShellOutput(out: "out", err: "err", code: 0)
-    }
-
-}
-
 class AsyncShellTest: XCTestCase {
 
     var expectation: XCTestExpectation?
