@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Logging
 @testable import CLIlib
 
 class LoggerTest: XCTestCase {
@@ -18,27 +19,38 @@ class LoggerTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testLogger() throws {
+    func testDefaultLogger() throws {
 
         // given
         // when
-        let log = Log(logLevel: .info)
+        let log: Logger = Log.defaultLogger()
 
         // then
-        XCTAssert(log.defaultLogger.logLevel == .info)
-        XCTAssert(log.defaultLogger.label == "CLIlib")
+        XCTAssert(log.logLevel == .warning)
+        XCTAssert(log.label == "CLIlib")
+    }
+
+    func testVerboseLogger() throws {
+
+        // given
+        // when
+        let log: Logger = Log.verboseLogger()
+
+        // then
+        XCTAssert(log.logLevel == .debug)
+        XCTAssert(log.label == "CLIlib")
     }
 
     func testLoggerSetLevel() throws {
 
         // given
-        var log = Log(logLevel: .info)
+        var log: Logger = Log.defaultLogger()
 
         // when
-        log.setLogLevel(level: .trace)
+        log.logLevel = .trace
 
         // then
-        XCTAssert(log.defaultLogger.logLevel == .trace)
+        XCTAssert(log.logLevel == .trace)
     }
 
 }
