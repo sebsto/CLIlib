@@ -1,3 +1,8 @@
+[![Build And Test]()
+![language](https://img.shields.io/badge/swift-5.7-blue)
+![platform](https://img.shields.io/badge/platform-macOS-green)
+[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
 # CLIlib
 
 A set of classes to build command-line (CLI) applications in Swift.
