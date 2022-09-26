@@ -1,4 +1,4 @@
-[![Build And Test]()
+[![Build And Test](https://github.com/sebsto/CLIlib/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/sebsto/CLIlib/actions/workflows/build_and_test.yml)
 ![language](https://img.shields.io/badge/swift-5.7-blue)
 ![platform](https://img.shields.io/badge/platform-macOS-green)
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
