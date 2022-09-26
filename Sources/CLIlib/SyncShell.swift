@@ -8,23 +8,23 @@
 import Foundation
 import Logging
 
-struct ShellOutput {
-    var out: String?
-    var err: String?
-    var code: Int32
+public struct ShellOutput {
+    public var out: String?
+    public var err: String?
+    public var code: Int32
 }
 
-enum ShellError: Error {
+public enum ShellError: Error {
     case fileDoesNotExist(filePath: String, fileSize: Int)
 }
 
-protocol ShellProtocol {
+public protocol ShellProtocol {
     func run(_ command: String) throws -> ShellOutput
 }
 
-struct SyncShell: ShellProtocol {
+public struct SyncShell: ShellProtocol {
 
-    func run(_ command: String) throws -> ShellOutput {
+    public func run(_ command: String) throws -> ShellOutput {
 
         // create a task
         let task = Process()

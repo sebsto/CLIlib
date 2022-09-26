@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProgressUpdateProtocol {
+public protocol ProgressUpdateProtocol {
     /// Update the animation with a new step.
     /// - Parameters:
     ///   - step: The index of the operation's current step.
@@ -24,13 +24,13 @@ protocol ProgressUpdateProtocol {
     func clear()
 }
 
-enum ProgressBarType {
+public enum ProgressBarType {
     case percentProgressAnimation
     case countingProgressAnimation
     case countingProgressAnimationMultiLine
 }
 
-class ProgressBar: ProgressUpdateProtocol {
+public class ProgressBar: ProgressUpdateProtocol {
 
     private let progressBarType: ProgressBarType
     private var output: OutputBuffer
@@ -51,7 +51,7 @@ class ProgressBar: ProgressUpdateProtocol {
         self.title = title
     }
 
-    func update(step: Int, total: Int, text: String = "") {
+    public func update(step: Int, total: Int, text: String = "") {
 
         if (!titlePrinted), let title {
             printTitle(title)
@@ -69,7 +69,7 @@ class ProgressBar: ProgressUpdateProtocol {
         }
     }
 
-    func clear() {
+    public func clear() {
         // clear current line
         output.clear()
 
@@ -80,7 +80,7 @@ class ProgressBar: ProgressUpdateProtocol {
         }
     }
 
-    func complete(success: Bool) {
+    public func complete(success: Bool) {
         if success {
             output.write("[ OK ]\n")
         } else {
