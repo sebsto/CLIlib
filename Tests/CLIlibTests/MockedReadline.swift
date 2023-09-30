@@ -11,13 +11,19 @@ import Foundation
 // mocked read line
 class MockedReadLine: ReadLineProtocol {
 
-    var input: [String]
+    var input: [String]?
+
+    public init() {
+    }
 
     public init(_ input: [String]) {
         self.input = input.reversed()
     }
 
     public func readLine(prompt: String, silent: Bool = false) -> String? {
+        guard var input else {
+            return nil
+        }
         return input.popLast()
     }
 }

@@ -127,4 +127,25 @@ class AsyncShellTest: XCTestCase {
         }
     }
 
+    func testCommandWithAmpersands() throws {
+
+        do {
+            // given
+            let command = "open https://stormacq.com?param1=value1&param2=value2"
+
+            // when
+            let process = try call(command)
+
+            // then
+            XCTAssertEqual(process.terminationStatus, 0)
+            XCTAssertNotNil(oneLineError)
+            XCTAssertNil(oneLineOutput)
+            let err = try XCTUnwrap(oneLineError)
+            XCTAssertEqual(err, "zsh:1: no matches found: https://stormacq.com?param1=value1\n")
+            waitForExpectations(timeout: 5)
+
+        } catch {
+            XCTAssert(false, "Unexpected exception thrown : \(error)")
+        }
+    }
 }
