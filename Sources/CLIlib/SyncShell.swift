@@ -29,6 +29,7 @@ public protocol ShellProtocol {
 
 public struct SyncShell: ShellProtocol {
 
+    public init() {}
     public func run(_ command: String) throws -> ShellOutput {
 
         // create a task
