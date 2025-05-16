@@ -6,12 +6,13 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# https://github.com/actions/runner-images/tree/main/images/macos
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.0.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_16.3.app/Contents/Developer
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - uses: actions/checkout@v4
