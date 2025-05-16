@@ -9,7 +9,7 @@ import Foundation
 import Logging
 
 // defines a global logger that we could reuse through the project
-public var log: Logger = Log.defaultLogger()
+public let log: Logger = Log.defaultLogger()
 
 public struct Log {
 
