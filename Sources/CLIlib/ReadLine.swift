@@ -7,10 +7,12 @@
 
 import Foundation
 
+@MainActor
 public protocol ReadLineProtocol {
     func readLine(prompt: String, silent: Bool) -> String?
 }
 
+@MainActor
 public struct ReadLine: ReadLineProtocol {
     public init() {}
     public func readLine(prompt: String, silent: Bool = false) -> String? {

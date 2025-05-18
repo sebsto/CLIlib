@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public protocol ProgressUpdateProtocol {
     /// Update the animation with a new step.
     /// - Parameters:
@@ -37,6 +38,7 @@ public enum ProgressBarType {
     case countingProgressAnimationMultiLine
 }
 
+@MainActor
 public class ProgressBar: ProgressUpdateProtocol {
 
     private let progressBarType: ProgressBarType

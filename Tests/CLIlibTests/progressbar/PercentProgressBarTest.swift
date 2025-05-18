@@ -10,37 +10,48 @@ import XCTest
 
 final class PercentProgressBarTest: XCTestCase {
 
-    var progressBar: ProgressUpdateProtocol!
+    var progressBar: ProgressUpdateProtocol? = nil
     var buffer: StringBuffer!
 
     override func setUp() {
         super.setUp()
         buffer = StringBuffer()
-        let progressBarImpl = ProgressBar(output: buffer, progressBarType: .percentProgressAnimation)
-        progressBarImpl.fullSign = "🁢"
-        progressBarImpl.emptySign = "-"
-        progressBar = progressBarImpl
     }
 
+    @MainActor
+    private func createProgressBar() -> ProgressBar{
+        let progressBarImpl: ProgressBar = ProgressBar(output: buffer, progressBarType: .percentProgressAnimation)
+        progressBarImpl.fullSign = "🁢"
+        progressBarImpl.emptySign = "-"
+        return progressBarImpl
+    }
+    @MainActor
     func testEmpty() {
+        let progressBar = createProgressBar()
         progressBar.update(step: 0, total: 100, text: "")
         XCTAssertEqual(buffer.string,
                        "0% [------------------------------------------------------------]")
     }
 
+    @MainActor
     func testEmptyWithText() {
+        let progressBar = createProgressBar()
         progressBar.update(step: 0, total: 100, text: "Label")
         XCTAssertEqual(buffer.string,
                        "0% [------------------------------------------------------------] Label")
     }
 
+    @MainActor
     func testFull() {
+        let progressBar = createProgressBar()
         progressBar.update(step: 100, total: 100, text: "")
         XCTAssertEqual(buffer.string,
                        "100% [🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢]\n")
     }
 
+    @MainActor
     func testPartial() {
+        let progressBar = createProgressBar()
         progressBar.update(step: 43, total: 100, text: "")
         XCTAssertEqual(buffer.string,
                        "43% [🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢🁢-----------------------------------]")

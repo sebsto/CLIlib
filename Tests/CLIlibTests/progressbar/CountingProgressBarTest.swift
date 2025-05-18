@@ -10,16 +10,17 @@ import XCTest
 
 final class CountingProgressBarTest: XCTestCase {
 
-    var progressBar: ProgressUpdateProtocol!
+    var progressBar: ProgressUpdateProtocol? = nil
     var buffer: StringBuffer!
 
     override func setUp() {
         super.setUp()
         buffer = StringBuffer()
-        progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimation)
     }
 
+    @MainActor
     func testContingSingleLine() {
+        let progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimation)
         progressBar.update(step: 1, total: 2, text: "A")
         progressBar.update(step: 2, total: 2, text: "B")
         progressBar.complete(success: true)

@@ -15,16 +15,23 @@ final class CountingMultiLineProgressBarTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
+    
         buffer = StringBuffer()
-        progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
+        
+        // Initialize progressBar in the test method instead
+        progressBar = nil
     }
 
-    func testContingMultiline() {
-        progressBar.update(step: 1, total: 2, text: "A")
-        progressBar.update(step: 2, total: 2, text: "B")
-        progressBar.complete(success: true)
-        XCTAssertEqual(buffer.string,
-                       "[1/2] A\n[2/2] B\n[ OK ]\n")
+    @MainActor
+    func testContingMultiline() async throws {
+            // Initialize ProgressBar here on the main actor
+            progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
+            
+            progressBar.update(step: 1, total: 2, text: "A")
+            progressBar.update(step: 2, total: 2, text: "B")
+            progressBar.complete(success: true)
+            XCTAssertEqual(buffer.string,
+                           "[1/2] A\n[2/2] B\n[ OK ]\n")
     }
 
 }
