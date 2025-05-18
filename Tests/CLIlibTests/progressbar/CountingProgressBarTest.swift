@@ -5,32 +5,31 @@
 //  Created by Stormacq, Sebastien on 13/09/2022.
 //
 
-import XCTest
+import Testing
+import Foundation
 @testable import CLIlib
 
-final class CountingProgressBarTest: XCTestCase {
+@Suite("Counting Progress Bar Tests")
+struct CountingProgressBarTest {
 
-    var buffer: StringBuffer!
-
-    override func setUp() {
-        super.setUp()
-        buffer = StringBuffer()
-    }
-
+    @Test("Counting progress bar should display correctly in single line mode")
     @MainActor
     func testContingSingleLine() {
+        // given
+        let buffer = StringBuffer()
         let progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimation)
+        
+        // when
         progressBar.update(step: 1, total: 2, text: "A")
         progressBar.update(step: 2, total: 2, text: "B")
         progressBar.complete(success: true)
-//        print(buffer.string.toHexEncodedString())
-//        print("[2/2] B\n[ OK ]\n".toHexEncodedString())
-        XCTAssertEqual(buffer.string,
-                       "[2/2] B\n[ OK ]\n")
+        
+        // then
+        #expect(buffer.string == "[2/2] B\n[ OK ]\n")
     }
-
 }
 
+// Helper extension for debugging purposes
 extension String {
     func toHexEncodedString(uppercase: Bool = true,
                             prefix: String = "",

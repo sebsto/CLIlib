@@ -5,29 +5,26 @@
 //  Created by Stormacq, Sebastien on 13/09/2022.
 //
 
-import XCTest
+import Testing
+import Foundation
 @testable import CLIlib
 
-final class CountingMultiLineProgressBarTest: XCTestCase {
+@Suite("Counting Multi-Line Progress Bar Tests")
+struct CountingMultiLineProgressBarTest {
 
-    var buffer: StringBuffer!
-
-    override func setUp() {
-        super.setUp()
-    
-        buffer = StringBuffer()
-    }
-
+    @Test("Counting progress bar should display correctly in multi-line mode")
     @MainActor
-    func testContingMultiline() async throws {
-            // Initialize ProgressBar here on the main actor
-            let progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
-            
-            progressBar.update(step: 1, total: 2, text: "A")
-            progressBar.update(step: 2, total: 2, text: "B")
-            progressBar.complete(success: true)
-            XCTAssertEqual(buffer.string,
-                           "[1/2] A\n[2/2] B\n[ OK ]\n")
+    func testContingMultiline() {
+        // given
+        let buffer = StringBuffer()
+        let progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
+        
+        // when
+        progressBar.update(step: 1, total: 2, text: "A")
+        progressBar.update(step: 2, total: 2, text: "B")
+        progressBar.complete(success: true)
+        
+        // then
+        #expect(buffer.string == "[1/2] A\n[2/2] B\n[ OK ]\n")
     }
-
 }

@@ -5,30 +5,24 @@
 //  Created by Stormacq, Sebastien on 15/09/2022.
 //
 
-import XCTest
+import Testing
+import Foundation
 @testable import CLIlib
 
-// tover the cod eportion not covered by ProgressBar tests
-final class OutputBufferTest: XCTestCase {
+@Suite("Output Buffer Tests")
+struct OutputBufferTest {
 
-    var buffer: FileHandle?
-
-    override func setUp() {
-        super.setUp()
-        buffer = FileHandle.nullDevice
-    }
-
+    @Test("Buffer clear should work correctly")
     func testClear() {
-
         // given
-        buffer!.write("test")
+        let buffer = FileHandle.nullDevice
+        buffer.write("test")
 
         // when
-        buffer!.clear()
+        buffer.clear()
 
         // then
-        // ?? maybe I should mock FileHandl
-        // tested method is trivial. I don't want to spend time on this
+        // Note: This is a trivial method and we're just ensuring it doesn't crash
+        // The original test noted that proper mocking of FileHandle would be needed for more thorough testing
     }
-
 }
