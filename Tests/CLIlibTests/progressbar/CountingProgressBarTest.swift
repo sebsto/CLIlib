@@ -10,7 +10,6 @@ import XCTest
 
 final class CountingProgressBarTest: XCTestCase {
 
-    var progressBar: ProgressUpdateProtocol? = nil
     var buffer: StringBuffer!
 
     override func setUp() {

@@ -10,22 +10,18 @@ import XCTest
 
 final class CountingMultiLineProgressBarTest: XCTestCase {
 
-    var progressBar: ProgressUpdateProtocol!
     var buffer: StringBuffer!
 
     override func setUp() {
         super.setUp()
     
         buffer = StringBuffer()
-        
-        // Initialize progressBar in the test method instead
-        progressBar = nil
     }
 
     @MainActor
     func testContingMultiline() async throws {
             // Initialize ProgressBar here on the main actor
-            progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
+            let progressBar = ProgressBar(output: buffer, progressBarType: .countingProgressAnimationMultiLine)
             
             progressBar.update(step: 1, total: 2, text: "A")
             progressBar.update(step: 2, total: 2, text: "B")
