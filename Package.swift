@@ -15,15 +15,10 @@ let package = Package(
             name: "CLIlib",
             targets: ["CLIlib"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.6.0"),
-    ],
     targets: [
         .target(
             name: "CLIlib",
-            dependencies: [
-                .product(name: "Logging", package: "swift-log"),
-            ]),
+        ),
         .testTarget(
             name: "CLIlibTests",
             dependencies: ["CLIlib"]),
